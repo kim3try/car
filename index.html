@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>프리미엄 종합 차량 서비스</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Inter Font (Tailwind default) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font (Tailwind default) --><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -23,263 +21,348 @@
             margin-bottom: 20px;
             border-radius: 9999px;
         }
+        /* 이미지 슬라이드용 CSS (간단 구현) */
+        .image-carousel {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+            height: 400px; /* 고정 높이 */
+            position: relative;
+        }
+        .image-carousel-item {
+            min-width: 100%;
+            transition: transform 0.5s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Header & Navigation -->
-    <header class="sticky top-0 z-50 bg-white shadow-md">
+    <!-- Header & Navigation --><header class="sticky top-0 z-50 bg-white shadow-md">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-indigo-600">올인원 드라이브</h1>
+            <h1 class="text-2xl font-bold text-indigo-600"><a href="#home">올인원 드라이브</a></h1>
             <nav class="space-x-4">
-                <a href="#summary" class="text-gray-600 hover:text-indigo-600 transition duration-150 hidden sm:inline">서비스 요약</a>
-                <button onclick="toggleQuoteModal(true)" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-150 text-sm">
+                <a href="#home" id="nav-home" class="text-gray-600 hover:text-indigo-600 transition duration-150 font-semibold">홈</a>
+                <a href="#services" id="nav-services" class="text-gray-600 hover:text-indigo-600 transition duration-150">서비스 요약</a>
+                <a href="#contact" id="nav-contact" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-150 text-sm">
                     문의 · 견적 폼
-                </button>
+                </a>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- 1. Hero Section -->
-        <section class="bg-indigo-600 text-white py-24 md:py-32">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
-                    <span class="block">전국 어디든,</span>
-                    <span class="block">당신의 차량 생활을 책임집니다.</span>
-                </h2>
-                <p class="text-xl opacity-90 mb-10 max-w-2xl mx-auto">
-                    운송, 운전 대행부터 정비, 사고 처리까지. 전문가가 제공하는 프리미엄 차량 관리 서비스.
-                </p>
-                <button onclick="toggleQuoteModal(true)" class="bg-white text-indigo-600 font-bold text-lg py-3 px-8 rounded-full shadow-xl hover:bg-gray-100 transform hover:scale-105 transition duration-300 ease-in-out">
-                    지금 바로 견적 문의하기
-                </button>
-            </div>
-        </section>
+    <!-- Main Content Containers --><main>
 
-        <!-- 2. Service Summary Section (서비스 요약) -->
-        <section id="summary" class="py-16 md:py-24">
-            <div class="container mx-auto px-4">
-                <h3 class="text-3xl font-bold text-center text-gray-900 section-title mx-auto">핵심 서비스 요약</h3>
-                <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-                    고객님의 모든 차량 관련 니즈를 한 번에 해결할 수 있도록 6가지 전문 서비스를 제공합니다.
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-
-                    <!-- Service Card 1: 탁송/특송차량 -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
-                        <div class="text-indigo-600 mb-4">
-                            <!-- Icon: Truck -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck"><path d="M14 18V6"/><path d="M14 6h4l3 3v9h-3"/><path d="M3 18h3"/><path d="M3 18V6"/><path d="M6 18V6"/><path d="M6 6h4"/><circle cx="12" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
-                        </div>
-                        <h4 class="text-xl font-semibold mb-2 text-gray-900">탁송 · 특송차량</h4>
-                        <p class="text-gray-600">탁송 / 특송차량 또는 서류를 전국 어디든 안전하게 이동시키는 Door-to-Door 운송 서비스입니다.</p>
-                    </div>
-
-                    <!-- Service Card 2: 일일기사/대리운전 -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
-                        <div class="text-indigo-600 mb-4">
-                            <!-- Icon: SteeringWheel -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-steering-wheel"><circle cx="12" cy="12" r="9"/><path d="M12 1v4"/><path d="M12 19v4"/><path d="m15.464 15.464-.707.707"/><path d="m8.943 8.943-1.414 1.414"/><path d="m15.464 8.536-.707-.707"/><path d="m8.943 15.057-1.414-1.414"/><path d="m15.464 8.536-2.121 2.121"/><path d="m10.536 10.536-2.121 2.121"/><path d="M17.07 7.07 15 9.141"/><path d="M7.07 17.07 9.141 15"/></svg>
-                        </div>
-                        <h4 class="text-xl font-semibold mb-2 text-gray-900">일일기사 · 대리운전</h4>
-                        <p class="text-gray-600">귀가, 행사 수행 등 고객 일정에 맞춰 시간 단위로 전담 운행하는 프리미엄 운전 대행 서비스입니다.</p>
-                    </div>
-
-                    <!-- Service Card 3: 정비/검사 대행 -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
-                        <div class="text-indigo-600 mb-4">
-                            <!-- Icon: Wrench -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/><path d="m21.2 2.8-4.3 4.3"/></svg>
-                        </div>
-                        <h4 class="text-xl font-semibold mb-2 text-gray-900">정비 · 검사 대행</h4>
-                        <p class="text-gray-600">예약부터 입고, 검사, 수령까지 정비 및 검사 관련 전 과정을 고객 대신 원스톱으로 대행합니다.</p>
-                    </div>
-
-                    <!-- Service Card 4: 보험 비교/대차 -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
-                        <div class="text-indigo-600 mb-4">
-                            <!-- Icon: ShieldCheck -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
-                        </div>
-                        <h4 class="text-xl font-semibold mb-2 text-gray-900">보험 비교 · 대차</h4>
-                        <p class="text-gray-600">사고 시 즉시 대차(렌트) 연결 및 고객에게 유리한 보험 요율을 비교하여 최적의 보험을 안내합니다.</p>
-                    </div>
-
-                    <!-- Service Card 5: 전손/폐차 -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
-                        <div class="text-indigo-600 mb-4">
-                            <!-- Icon: Recycle -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-recycle"><path d="M7 19H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3"/><path d="M17 14V9l5 5"/><path d="m11 14 5 5-5 5"/><path d="M11 24v-5h-5"/></svg>
-                        </div>
-                        <h4 class="text-xl font-semibold mb-2 text-gray-900">전손 · 폐차</h4>
-                        <p class="text-gray-600">복잡한 말소 및 서류 처리 과정을 대행하여 전손 및 폐차를 원스톱으로 깔끔하게 진행합니다.</p>
-                    </div>
-
-                    <!-- Service Card 6: 렌트(일반대여) -->
-                    <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
-                        <div class="text-indigo-600 mb-4">
-                            <!-- Icon: Key -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-key"><path d="m20 20-3.5-3.5a2.12 2.12 0 0 0-3-3L5 12.5V19h6.5l3.5-3.5a2.12 2.12 0 0 0 3 3L20 20z"/><path d="m14.5 5.5 2.1-2.1a1.41 1.41 0 0 1 2 2l-2.1 2.1"/><path d="M16 16 9 9"/><path d="M18 12l.5-.5a2.12 2.12 0 0 0-3-3L12 11.5"/></svg>
-                        </div>
-                        <h4 class="text-xl font-semibold mb-2 text-gray-900">렌트 (일반대여)</h4>
-                        <p class="text-gray-600">단기, 장기 관계없이 다양한 차종을 고객의 목적과 기간에 맞추어 합리적으로 맞춤 제공합니다.</p>
-                    </div>
-
+        <!-- 1. HOME Page Content (Default view) --><div id="home-page" data-page="home">
+            
+            <!-- Hero Section --><section class="bg-indigo-600 text-white py-24 md:py-32">
+                <div class="container mx-auto px-4 text-center">
+                    <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
+                        <span class="block">전국 어디든,</span>
+                        <span class="block">당신의 차량 생활을 책임집니다.</span>
+                    </h2>
+                    <p class="text-xl opacity-90 mb-10 max-w-2xl mx-auto">
+                        운송, 운전 대행부터 정비, 사고 처리까지. 전문가가 제공하는 프리미엄 차량 관리 서비스.
+                    </p>
+                    <a href="#contact" class="bg-white text-indigo-600 font-bold text-lg py-3 px-8 rounded-full shadow-xl hover:bg-gray-100 transform hover:scale-105 transition duration-300 ease-in-out">
+                        지금 바로 견적 문의하기
+                    </a>
                 </div>
-                <div class="text-center mt-12">
-                    <button onclick="toggleQuoteModal(true)" class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
-                        원하는 서비스 견적 문의하기
-                    </button>
+            </section>
+
+            <!-- Company Introduction Section (회사 소개) --><section id="company-intro" class="py-16 md:py-24 bg-white">
+                <div class="container mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/2">
+                        <h3 class="text-3xl font-bold text-gray-900 section-title">올인원 드라이브는?</h3>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            저희 '올인원 드라이브'는 고객님의 소중한 차량과 편리한 이동을 위한 모든 솔루션을 제공하는 프리미엄 종합 차량 서비스 기업입니다. 다년간의 노하우를 가진 전문 드라이버와 숙련된 매니저들이 고객님의 삶의 질을 높이는 데 기여합니다.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-6">
+                            언제 어디서든 고객님의 필요에 맞는 최적의 서비스를 제공하기 위해 끊임없이 노력하며, 안전과 신뢰를 최우선 가치로 삼고 있습니다. 복잡한 차량 문제부터 일상적인 이동까지, '올인원 드라이브'와 함께라면 걱정 없이 편리함을 누리실 수 있습니다.
+                        </p>
+                        <a href="#services" class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300">
+                            서비스 자세히 보기
+                        </a>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="image-carousel rounded-xl shadow-xl overflow-hidden">
+                            <!-- 랜덤 이미지 슬라이드 -->
+                            <div class="image-carousel-item" style="background-image: url('https://placehold.co/800x600/1e293b/ffffff?text=운송+서비스')"></div>
+                            <div class="image-carousel-item" style="background-image: url('https://placehold.co/800x600/374151/ffffff?text=대리+및+기사+서비스')"></div>
+                            <div class="image-carousel-item" style="background-image: url('https://placehold.co/800x600/4b5563/ffffff?text=차량+정비+및+점검')"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
-      </footer>
-    </main>
+            </section>
 
-    <!-- 4. Inquiry / Quote Form Modal (문의 · 견적 폼) -->
-    <div id="quoteModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-50 hidden transition-opacity duration-300 overflow-y-auto">
-        <div class="flex items-center justify-center min-h-screen p-4">
-            <div class="bg-white w-full max-w-lg mx-auto rounded-xl shadow-2xl p-8 transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-2xl font-bold text-indigo-600">프리미엄 견적 요청</h3>
-                    <button onclick="toggleQuoteModal(false)" class="text-gray-400 hover:text-gray-800 transition duration-150">
-                        <!-- Icon: Close -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-                    </button>
+            <!-- Call to Action Section --><section class="bg-indigo-500 text-white py-16 md:py-20 text-center">
+                <div class="container mx-auto px-4">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4">지금 바로, 전문가의 손길을 경험하세요!</h3>
+                    <p class="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
+                        고객님의 모든 차량 관련 고민을 '올인원 드라이브'가 해결해 드립니다. 지금 바로 문의해 보세요.
+                    </p>
+                    <a href="#contact" class="bg-white text-indigo-600 font-bold text-lg py-3 px-8 rounded-full shadow-xl hover:bg-gray-100 transform hover:scale-105 transition duration-300 ease-in-out">
+                        무료 견적 받기
+                    </a>
                 </div>
+            </section>
+        </div>
 
-                <p class="text-gray-600 mb-6">원하시는 서비스를 선택하고 정보를 입력하시면 신속하게 견적을 안내해 드립니다.</p>
-
-                <form onsubmit="handleQuoteSubmit(event)">
-                    <div class="mb-4">
-                        <label for="service" class="block text-sm font-medium text-gray-700 mb-1">필수 선택 서비스 <span class="text-red-500">*</span></label>
-                        <select id="service" required class="w-full border border-gray-300 p-3 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
-                            <option value="">-- 서비스 선택 --</option>
-                            <option value="transport">탁송 · 특송차량</option>
-                            <option value="chauffeur">일일기사 · 대리운전</option>
-                            <option value="maintenance">정비 · 검사 대행</option>
-                            <option value="insurance">보험 비교 · 대차</option>
-                            <option value="scrapping">전손 · 폐차</option>
-                            <option value="rental">렌트 (일반대여)</option>
-                        </select>
+        <!-- 2. SERVICES Page Content --><div id="services-page" class="hidden" data-page="services">
+            <div class="py-16 md:py-24">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-4xl font-bold text-center text-gray-900 mb-12 section-title mx-auto">프리미엄 서비스 요약</h2>
+                    <p class="text-center text-gray-600 mb-16 max-w-3xl mx-auto">
+                        '올인원 드라이브'는 고객님의 모든 차량 관련 니즈를 충족시키기 위해 6가지의 전문적이고 체계적인 서비스를 제공합니다.
+                    </p>
+        
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        
+                        <!-- Service Card 1: 탁송/특송차량 --><div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
+                            <div class="text-indigo-600 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck"><path d="M14 18V6"/><path d="M14 6h4l3 3v9h-3"/><path d="M3 18h3"/><path d="M3 18V6"/><path d="M6 18V6"/><path d="M6 6h4"/><circle cx="12" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+                            </div>
+                            <h4 class="text-2xl font-semibold mb-2 text-gray-900">탁송 · 특송차량</h4>
+                            <p class="text-gray-700 leading-relaxed">
+                                **전국 어디든 안전하게\!** 🤝 <br>
+                                차량, 고가품, 서류 등 화물 종류에 관계없이 **전문 드라이버 배정**을 통한 **신속하고 안전한 Door-to-Door 이동** 서비스. (긴급 특송 가능)
+                            </p>
+                        </div>
+        
+                        <!-- Service Card 2: 일일기사/대리운전 --><div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
+                            <div class="text-indigo-600 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-steering-wheel"><circle cx="12" cy="12" r="9"/><path d="M12 1v4"/><path d="M12 19v4"/><path d="m15.464 15.464-.707.707"/><path d="m8.943 8.943-1.414 1.414"/><path d="m15.464 8.536-.707-.707"/><path d="m8.943 15.057-1.414-1.414"/><path d="m15.464 8.536-2.121 2.121"/><path d="m10.536 10.536-2.121 2.121"/><path d="M17.07 7.07 15 9.141"/><path d="M7.07 17.07 9.141 15"/></svg>
+                            </div>
+                            <h4 class="text-2xl font-semibold mb-2 text-gray-900">일일기사 · 대리운전</h4>
+                            <p class="text-gray-700 leading-relaxed">
+                                **시간 단위 맞춤 전담 운전\!** ⏰ <br>
+                                **귀가, 행사 수행, 비즈니스 의전** 등 고객의 일정에 맞춰 원하는 시간만큼 **전문 기사가 전담 운행**하는 프리미엄 운전 서비스.
+                            </p>
+                        </div>
+        
+                        <!-- Service Card 3: 정비/검사 대행 --><div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
+                            <div class="text-indigo-600 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wrench"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/><path d="m21.2 2.8-4.3 4.3"/></svg>
+                            </div>
+                            <h4 class="text-2xl font-semibold mb-2 text-gray-900">정비 · 검사 대행</h4>
+                            <p class="text-gray-700 leading-relaxed">
+                                **번거로움 없이 원스톱\!** ⚙️ <br>
+                                **예약 → 입고 → 정비/검사 → 수령**의 전 과정을 **전문 매니저가 대행**하여 고객의 시간 절약 및 차량 관리 편의성 극대화.
+                            </p>
+                        </div>
+        
+                        <!-- Service Card 4: 보험 비교/대차 --><div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
+                            <div class="text-indigo-600 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+                            </div>
+                            <h4 class="text-2xl font-semibold mb-2 text-gray-900">보험 비교 · 대차</h4>
+                            <p class="text-gray-700 leading-relaxed">
+                                **사고 즉시, 걱정 끝\!** 🛡️ <br>
+                                **사고 발생 시 즉시 현장 출동 및 대차(렌트)** 연결. 고객에게 **유리한 보험 요율 및 상품을 비교**하여 최적의 보험 가입 컨설팅 제공.
+                            </p>
+                        </div>
+        
+                        <!-- Service Card 5: 전손/폐차 --><div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
+                            <div class="text-indigo-600 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-recycle"><path d="M7 19H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v3"/><path d="M17 14V9l5 5"/><path d="m11 14 5 5-5 5"/><path d="M11 24v-5h-5"/></svg>
+                            </div>
+                            <h4 class="text-2xl font-semibold mb-2 text-gray-900">전손 · 폐차</h4>
+                            <p class="text-gray-700 leading-relaxed">
+                                **복잡한 서류 처리 원스톱\!** 📑 <br>
+                                사고/노후 차량의 **말소 및 폐차**에 필요한 **모든 서류 및 행정 절차**를 대행하여 깔끔하게 마무리.
+                            </p>
+                        </div>
+        
+                        <!-- Service Card 6: 렌트(일반대여) --><div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 border-t-4 border-indigo-500">
+                            <div class="text-indigo-600 mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-key"><path d="m20 20-3.5-3.5a2.12 2.12 0 0 0-3-3L5 12.5V19h6.5l3.5-3.5a2.12 2.12 0 0 0 3 3L20 20z"/><path d="m14.5 5.5 2.1-2.1a1.41 1.41 0 0 1 2 2l-2.1 2.1"/><path d="M16 16 9 9"/><path d="M18 12l.5-.5a2.12 2.12 0 0 0-3-3L12 11.5"/></svg>
+                            </div>
+                            <h4 class="text-2xl font-semibold mb-2 text-gray-900">렌트 (일반대여)</h4>
+                            <p class="text-gray-700 leading-relaxed">
+                                **단기/장기, 차종 맞춤 제공\!** 🔑 <br>
+                                **여행, 업무, 사고 대차(비보험 포함)** 등 목적에 맞춰 다양한 차종을 **합리적인 요율**로 단기 또는 장기 대여.
+                            </p>
+                        </div>
+        
                     </div>
-
-                    <div class="mb-4">
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">성함 <span class="text-red-500">*</span></label>
-                        <input type="text" id="name" required placeholder="홍길동" class="w-full border border-gray-300 p-3 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+                    <div class="text-center mt-16">
+                        <a href="#contact" class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-300">
+                            원하는 서비스 견적 문의하기
+                        </a>
                     </div>
-
-                    <div class="mb-4">
-                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">연락처 <span class="text-red-500">*</span></label>
-                        <input type="tel" id="phone" required placeholder="010-1234-5678" class="w-full border border-gray-300 p-3 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
-                    </div>
-
-                    <div class="mb-6">
-                        <label for="details" class="block text-sm font-medium text-gray-700 mb-1">상세 요청 사항 (출발지, 도착지, 날짜 등)</label>
-                        <textarea id="details" rows="4" placeholder="예: 5월 20일 오전 10시, 서울 강남구에서 부산 해운대구로 차량 탁송 요청합니다." class="w-full border border-gray-300 p-3 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"></textarea>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <label class="flex items-center">
-                            <input type="checkbox" required class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                            <span class="ml-2 text-sm text-gray-700">개인정보 수집 및 이용에 동의합니다. <span class="text-red-500">*</span></span>
-                        </label>
-                    </div>
-
-                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transform hover:scale-[1.01] transition duration-200">
-                        견적 요청 및 제출
-                    </button>
-                </form>
-
-                <div id="successMessage" class="hidden mt-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                    <strong class="font-bold">요청 완료!</strong>
-                    <span class="block sm:inline"> 견적 요청이 성공적으로 접수되었습니다. 곧 연락드리겠습니다.</span>
                 </div>
             </div>
         </div>
-    </div>
 
+        <!-- 3. CONTACT Page Content --><div id="contact-page" class="hidden" data-page="contact">
+            <div class="py-16 md:py-24">
+                <div class="container mx-auto px-4 max-w-2xl bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-4xl font-bold text-center text-indigo-600 mb-6 section-title mx-auto">프리미엄 견적 요청</h2>
+                    <p class="text-center text-gray-600 mb-10">
+                        원하시는 서비스를 선택하고 정보를 입력하시면 신속하게 견적을 안내해 드립니다.
+                    </p>
+        
+                    <form onsubmit="handleQuoteSubmit(event)">
+                        <div class="mb-4">
+                            <label for="service" class="block text-sm font-medium text-gray-700 mb-1">필수 선택 서비스 <span class="text-red-500">*</span></label>
+                            <select id="service" required class="w-full border border-gray-300 p-3 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+                                <option value="">-- 서비스 선택 --</option>
+                                <option value="transport">탁송 · 특송차량</option>
+                                <option value="chauffeur">일일기사 · 대리운전</option>
+                                <option value="maintenance">정비 · 검사 대행</option>
+                                <option value="insurance">보험 비교 · 대차</option>
+                                <option value="scrapping">전손 · 폐차</option>
+                                <option value="rental">렌트 (일반대여)</option>
+                            </select>
+                        </div>
+        
+                        <div class="mb-4">
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">성함 <span class="text-red-500">*</span></label>
+                            <input type="text" id="name" required placeholder="홍길동" class="w-full border border-gray-300 p-3 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+                        </div>
+        
+                        <div class="mb-4">
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">연락처 <span class="text-red-500">*</span></label>
+                            <input type="tel" id="phone" required placeholder="010-1234-5678" class="w-full border border-gray-300 p-3 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+                        </div>
+        
+                        <div class="mb-6">
+                            <label for="details" class="block text-sm font-medium text-gray-700 mb-1">상세 요청 사항 (출발지, 도착지, 날짜 등)</label>
+                            <textarea id="details" rows="4" placeholder="예: 5월 20일 오전 10시, 서울 강남구에서 부산 해운대구로 차량 탁송 요청합니다." class="w-full border border-gray-300 p-3 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150"></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="flex items-center">
+                                <input type="checkbox" required class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                                <span class="ml-2 text-sm text-gray-700">개인정보 수집 및 이용에 동의합니다. <span class="text-red-500">*</span></span>
+                            </label>
+                        </div>
+        
+                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-lg shadow-lg transform hover:scale-[1.01] transition duration-200">
+                            견적 요청 및 제출
+                        </button>
+                    </form>
+        
+                    <div id="successMessage" class="hidden mt-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                        <strong class="font-bold">요청 완료!</strong>
+                        <span class="block sm:inline"> 견적 요청이 성공적으로 접수되었습니다. 곧 연락드리겠습니다.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (공통) --><footer class="bg-gray-800 text-white py-12 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <h4 class="text-xl font-bold mb-4">올인원 드라이브</h4>
+            <div class="text-sm space-y-1 text-gray-400">
+                <p>대표: 홍길동 | 사업자 등록번호: 123-45-67890</p>
+                <p>주소: 서울특별시 강남구 테헤란로 1234</p>
+                <p>문의 전화: 1600-0000 | 이메일: support@allinonedrive.co.kr</p>
+                <p class="pt-4">&copy; 2025 All-in-One Drive. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // 모달 열기/닫기 기능
-        function toggleQuoteModal(show) {
-            const modal = document.getElementById('quoteModal');
-            const content = document.getElementById('modalContent');
+        // 페이지 라우팅 로직
+        function handleRouting() {
+            const hash = window.location.hash || '#home';
+            const pageId = hash.substring(1); // #home -> home
+            const allPages = ['home', 'services', 'contact'];
             
-            if (show) {
-                modal.classList.remove('hidden');
-                setTimeout(() => {
-                    modal.classList.add('opacity-100');
-                    content.classList.remove('opacity-0', 'scale-95');
-                    content.classList.add('opacity-100', 'scale-100');
-                }, 10); // 애니메이션 트리거를 위한 작은 딜레이
+            // 모든 페이지 숨기기
+            allPages.forEach(p => {
+                const pageElement = document.getElementById(p + '-page');
+                if (pageElement) {
+                    pageElement.classList.add('hidden');
+                }
+                const navElement = document.getElementById('nav-' + p);
+                if (navElement) {
+                    navElement.classList.remove('font-semibold');
+                }
+            });
+
+            // 현재 페이지 보이기
+            const currentPageElement = document.getElementById(pageId + '-page');
+            const currentNavElement = document.getElementById('nav-' + pageId);
+
+            if (currentPageElement) {
+                currentPageElement.classList.remove('hidden');
+            }
+            if (currentNavElement) {
+                currentNavElement.classList.add('font-semibold');
+            }
+
+            // 홈 페이지의 이미지 슬라이드 시작 (홈일 때만)
+            if (pageId === 'home') {
+                startCarousel();
             } else {
-                modal.classList.remove('opacity-100');
-                content.classList.remove('opacity-100', 'scale-100');
-                content.classList.add('opacity-0', 'scale-95');
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                }, 300); // 애니메이션 시간(300ms) 후 완전히 숨기기
-                
-                // 성공 메시지 숨기기 및 폼 초기화 (선택 사항)
-                document.getElementById('successMessage').classList.add('hidden');
-                document.querySelector('form').reset();
+                stopCarousel();
+            }
+
+            // 페이지 상단으로 스크롤
+            window.scrollTo(0, 0);
+        }
+
+        // 이미지 슬라이드 기능
+        let carouselInterval;
+        let currentIndex = 0;
+        const CAROUSEL_DURATION = 4000;
+
+        function startCarousel() {
+            stopCarousel(); // 기존 인터벌 중지
+            const carousel = document.querySelector('.image-carousel');
+            if (!carousel) return;
+
+            const items = carousel.querySelectorAll('.image-carousel-item');
+            const totalItems = items.length;
+
+            const showNextImage = () => {
+                currentIndex = (currentIndex + 1) % totalItems;
+                items.forEach((item, index) => {
+                    item.style.transform = `translateX(-${currentIndex * 100}%)`;
+                });
+            };
+
+            carouselInterval = setInterval(showNextImage, CAROUSEL_DURATION);
+        }
+
+        function stopCarousel() {
+            if (carouselInterval) {
+                clearInterval(carouselInterval);
+                carouselInterval = null;
             }
         }
 
-        // 폼 제출 처리 (실제 API 호출 대신 콘솔 출력 및 성공 메시지 표시)
+        // 폼 제출 처리 (가짜 데이터 전송)
         function handleQuoteSubmit(event) {
             event.preventDefault();
             
-            const service = document.getElementById('service').value;
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const details = document.getElementById('details').value;
-            
-            const quoteData = {
-                service: service,
-                name: name,
-                phone: phone,
-                details: details
-            };
-
             // 실제 서버로 데이터를 보내는 로직은 여기에 구현해야 합니다.
-            console.log("== 견적 요청 데이터 전송 ==");
-            console.log(quoteData);
+            // ... (콘솔 출력 로직은 생략)
 
             // 폼 숨기고 성공 메시지 표시
-            document.querySelector('form').style.display = 'none';
+            document.querySelector('#contact-page form').style.display = 'none';
             document.getElementById('successMessage').classList.remove('hidden');
-            document.getElementById('successMessage').parentElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-            // 3초 후 모달 자동으로 닫고 폼 다시 표시
+            // 3초 후 초기화
             setTimeout(() => {
-                toggleQuoteModal(false);
-                document.querySelector('form').style.display = 'block';
+                document.querySelector('#contact-page form').style.display = 'block';
+                document.getElementById('successMessage').classList.add('hidden');
+                document.querySelector('#contact-page form').reset();
             }, 3000); 
         }
 
-        // 모달 외부 클릭 시 닫기
-        document.getElementById('quoteModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                toggleQuoteModal(false);
-            }
-        });
+
+        // 이벤트 리스너 등록
+        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('load', handleRouting); // 페이지 로드 시 라우팅 시작
     </script>
 </body>
 </html>
-        <!-- 3. Footer -->
-        <footer class="bg-gray-800 text-white py-12 mt-16">
-            <div class="container mx-auto px-4 text-center">
-                <h4 class="text-xl font-bold mb-4">올인원 드라이브</h4>
-                <div class="text-sm space-y-1 text-gray-400">
-                    <p>대표: 홍길동 | 사업자 등록번호: 123-45-67890</p>
-                    <p>주소: 서울특별시 강남구 테헤란로 1234</p>
-                    <p>문의 전화: 1600-0000 | 이메일: support@allinonedrive.co.kr</p>
-                    <p class="pt-4">&copy; 2025 All-in-One Drive. All rights reserved.</p>
-                </div>
-            </div>
-  
